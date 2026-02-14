@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>It's a Date 💖</title>
+<style>
+body{
+    text-align:center;
+    background: linear-gradient(to bottom, #ffffff, #ffd6ec, #ff99cc);
+    color:#b30059;
+    font-family:Comic Sans MS;
+    overflow:hidden;
+    animation:softPulse 6s infinite alternate;
+}
+
+
+.slideshow{
+    width:300px;
+    height:400px;
+    border-radius:20px;
+    margin:20px auto;
+    object-fit:cover;
+    transition:opacity 1s ease-in-out;
+}
+
+.falling{
+    position:fixed;
+    top:-100px;
+    width:100px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    to{transform:translateY(110vh);}
+}
+
+.firework{
+    position:fixed;
+    font-size:30px;
+    animation:boom 1s forwards;
+}
+
+@keyframes boom{
+    from{transform:scale(0);opacity:1;}
+    to{transform:scale(3);opacity:0;}
+}
+
+@keyframes softPulse{
+    from{filter:brightness(1);}
+    to{filter:brightness(1.05);}
+}
+    .bg-heart{
+    position:fixed;
+    color:#ff99cc;
+    opacity:0.5;
+    animation:floatUp 8s linear infinite;
+    z-index:-1;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(100vh) scale(0.5);
+        opacity:0.7;
+    }
+    to{
+        transform:translateY(-10vh) scale(1.2);
+        opacity:0;
+    }
+}
+.moon{
+    position:fixed;
+    top:40px;
+    right:40px;
+    width:100px;
+    height:100px;
+    background:radial-gradient(circle at 30% 30%, #ffffff, #ffe6f2);
+    border-radius:50%;
+    box-shadow:0 0 40px #ffb3d9, 0 0 80px #ff66b2;
+    z-index:-1;
+    animation:moonGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes moonGlow{
+    from{box-shadow:0 0 20px #ffb3d9, 0 0 40px #ff66b2;}
+    to{box-shadow:0 0 50px #ff99cc, 0 0 100px #ff3399;}
+}
+
+.star{
+    position:fixed;
+    color:white;
+    font-size:15px;
+    animation:twinkle 2s infinite alternate;
+    z-index:-1;
+}
+
+@keyframes twinkle{
+    from{opacity:0.3;}
+    to{opacity:1;}
+}
+.glow{
+    animation:glowText 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowText{
+    from{ text-shadow:0 0 5px #ff99cc; }
+    to{ text-shadow:0 0 20px #ff3399, 0 0 40px #ff66b2; }
+}
+.sky-name{
+    position:fixed;
+    top:30%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:60px;
+    color:#ff4da6;
+    opacity:0;
+    text-shadow:0 0 20px #ff99cc, 0 0 40px #ff3399;
+    animation:fadeInName 4s ease forwards;
+    z-index:-1;
+}
+
+@keyframes fadeInName{
+    to{opacity:0.4;}
+}
+.heartbeat{
+    font-size:40px;
+    animation:beat 1s infinite;
+    margin-top:20px;
+}
+
+@keyframes beat{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+}
+// Confetti Explosion on Load
+window.onload = function(){
+    for(let i=0;i<80;i++){
+        let confetti = document.createElement("div");
+        confetti.innerHTML = "🎊";
+        confetti.style.position = "fixed";
+        confetti.style.left = Math.random()*100 + "vw";
+        confetti.style.top = Math.random()*100 + "vh";
+        confetti.style.fontSize = (Math.random()*20 + 15) + "px";
+        confetti.style.animation = "boom 1.5s forwards";
+        document.body.appendChild(confetti);
+
+        setTimeout(()=>confetti.remove(),1500);
+    }
+};
+
+</style>
+</head>
+
+<body>
+<div class="moon"></div
+<div class="sky-name"> SHIKHA ❤️</div>
+<h1>IT'S A DATE 💘</h1>
+<div class="heartbeat"> You Ethereal Gorgeousaurus ❤️</div>
+<h2 id="loveText"></h2>
+
+<img id="slide" class="slideshow" src="photo1.jpg">
+
+<h3 class="glow"> Your Valentine Aspirant, <br> G.S.Y. for you❤️</h3>
+
+
+<audio id="bgMusic" loop>
+<source src="tera-hasna.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+// Start music after first click
+document.body.addEventListener("click",function(){
+    document.getElementById("bgMusic").play();
+});
+
+// Slideshow
+let images=["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg"];
+let index=0;
+
+setInterval(function(){
+    let slide = document.getElementById("slide");
+    slide.style.opacity = 0;
+
+    setTimeout(function(){
+        index=(index+1)%images.length;
+        slide.src = images[index];
+        slide.style.opacity = 1;
+    },2000);
+
+},4000);
+
+// Heart Rain
+setInterval(function(){
+    let heart = document.createElement("div");
+    heart.innerHTML = "💖";
+    heart.style.position = "fixed";
+    heart.style.top = "-20px";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (Math.random()*20 + 20) + "px";
+    heart.style.animation = "fall 4s linear";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),4000);
+},300);
+
+// Fireworks
+setInterval(function(){
+    let fw=document.createElement("div");
+    fw.classList.add("firework");
+    fw.innerHTML="🎆";
+    fw.style.left=Math.random()*100+"vw";
+    fw.style.top=Math.random()*100+"vh";
+    document.body.appendChild(fw);
+    setTimeout(()=>fw.remove(),1000);
+},400);
+// Background Floating Hearts
+setInterval(function(){
+    let heart = document.createElement("div");
+    heart.innerHTML = "💗";
+    heart.classList.add("bg-heart");
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (Math.random()*30 + 20) + "px";
+    heart.style.animationDuration = (Math.random()*5 + 5) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),10000);
+},800);
+// Sparkling Stars
+setInterval(function(){
+    let star = document.createElement("div");
+    star.innerHTML = "✨";
+    star.classList.add("star");
+    star.style.left = Math.random()*100 + "vw";
+    star.style.top = Math.random()*100 + "vh";
+    document.body.appendChild(star);
+
+    setTimeout(()=>star.remove(),2000);
+},500);
+// Typing Animation
+let text = `You are a poetry written by God himself…
+I am a reader Who is falling for every line💘`;
+
+let i = 0;
+function typeWriter(){
+    if(i < text.length){
+        document.getElementById("loveText").innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+    }
+}
+typeWriter();
+
+</script>
+
+</body>
+</html>
+
+
+
